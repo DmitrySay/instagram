@@ -1,3 +1,12 @@
+tmp
+.classpath
+.project
 .idea
 target
-app.iml
+/target/
+*.iml
+bin
+.settings
+/build
+out
+.checkstyle
