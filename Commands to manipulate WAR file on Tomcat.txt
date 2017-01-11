@@ -1,0 +1,8 @@
+mvn tomcat7:deploy
+mvn tomcat7:undeploy
+mvn tomcat7:redeploy
+
+mvn tomcat:list
+mvn tomcat:sessions
+mvn tomcat:start
+mvn tomcat:stop
