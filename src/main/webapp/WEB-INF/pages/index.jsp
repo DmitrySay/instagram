@@ -41,7 +41,7 @@
 
                 <form method="post" action="fileUpLoad" enctype="multipart/form-data">
                     <div class="form-group">
-                        ${message}12345
+                        ${message}
                         <br>
                         <label for="comment">Write your comment</label>
                         <textarea name="comment" id="comment" class="form-control" rows="10" cols="10"></textarea>
