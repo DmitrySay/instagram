@@ -17,7 +17,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:applicationConfig.xml");
+    /*    ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:applicationConfig.xml");
         ImageService imageService = (ImageService)context.getBean("imageService");
 
         System.out.println("++++++++++++++++++++++");
@@ -33,7 +33,7 @@ public class Main {
         }
         //System.out.println(imageService.);
         ((ClassPathXmlApplicationContext) context).close();
-
+*/
     }
 
 
