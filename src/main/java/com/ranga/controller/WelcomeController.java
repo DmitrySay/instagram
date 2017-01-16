@@ -128,7 +128,7 @@ public class WelcomeController {
 
 
     @RequestMapping({"/delete/{imageId}", "pages/delete/{imageId}"})
-    public String deleteContact(@PathVariable("imageId") Integer imageId) {
+    public String deleteImage(@PathVariable("imageId") Integer imageId) {
 
         if (imageId != null) {
             imageService.deleteImage(imageId);
@@ -139,7 +139,7 @@ public class WelcomeController {
 
 
     /**
-     * Метод получает baseURL (http://localhost:80/web/)
+     * Method gets baseURL (http://localhost:80/web/)
      *
      * @param request
      * @return
@@ -150,7 +150,7 @@ public class WelcomeController {
 
 
     /**
-     * Проверка изображения на null, пусто и тип файла
+     * Validate image method
      *
      * @param image
      * @return true/false
