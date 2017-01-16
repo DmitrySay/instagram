@@ -18,8 +18,6 @@ public class Image implements Serializable {
     @Column(name = "FILENAME")
     private String filename;
 
-    @Column(name = "BASEURL")
-    private String baseURL;
 
     public Image() {
 
@@ -49,13 +47,6 @@ public class Image implements Serializable {
         this.filename = filename;
     }
 
-    public String getBaseURL() {
-        return baseURL;
-    }
-
-    public void setBaseURL(String baseURL) {
-        this.baseURL = baseURL;
-    }
 
     @Override
     public String toString() {
@@ -63,7 +54,6 @@ public class Image implements Serializable {
                 "id=" + id +
                 ", comment='" + comment + '\'' +
                 ", filename='" + filename + '\'' +
-                ", baseURL='" + baseURL + '\'' +
                 '}';
     }
 }

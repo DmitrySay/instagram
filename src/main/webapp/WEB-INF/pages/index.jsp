@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <!doctype html>
 <html lang="en">
@@ -32,7 +32,7 @@
                 <c:forEach items="${imageList}" var="image">
                     <div class="post_content">
                         <img class="image"
-                             src="<c:out value="${image.baseURL}"/>/images/<c:out value="${image.filename}"/>"/>
+                             src="<c:out value="${contextPath}"/>/images/<c:out value="${image.filename}"/>"/>
                         <p><c:out value="${image.comment}"/></p>
                         <a href="delete/${image.id}"><spring:message code="form.delete"/></a>
                     </div>

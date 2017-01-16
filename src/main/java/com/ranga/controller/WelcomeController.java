@@ -111,7 +111,7 @@ public class WelcomeController {
             Image imageT = new Image();
             imageT.setComment(comment);
             imageT.setFilename(filename);
-            imageT.setBaseURL(getBaseURL(request));
+
 
 
             imageService.addImage(imageT);
