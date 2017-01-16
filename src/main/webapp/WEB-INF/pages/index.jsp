@@ -27,14 +27,14 @@
 
             <div class="col-md-3 col-sm-2 col-xs-1 "></div>
 
-            <div class="col-md-6 col-sm-8 col-xs-10 content">
 
+            <div class="col-md-6 col-sm-8 col-xs-10 content">
                 <c:forEach items="${imageList}" var="image">
                     <div class="post_content">
                         <img class="image"
                              src="<c:out value="${image.baseURL}"/>/images/<c:out value="${image.filename}"/>"/>
                         <p><c:out value="${image.comment}"/></p>
-                        <a href="delete/${image.id}">Delete</a>
+                        <a href="delete/${image.id}"><spring:message code="form.delete"/></a>
                     </div>
                 </c:forEach>
 
@@ -43,14 +43,14 @@
                     <div class="form-group">
                         ${message}
                         <br>
-                        <label for="comment">Write your comment</label>
+                        <label for="comment"><spring:message code="form.write"/></label>
                         <textarea name="comment" id="comment" class="form-control" rows="10" cols="10"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="files">Attach your image</label>
+                        <label for="files"><spring:message code="form.attach"/></label>
                         <input type="file" id="files" name="image">
                     </div>
-                    <button type="submit" class="btn btn-danger pull-right">Submit</button>
+                    <button type="submit" class="btn btn-danger pull-right"><spring:message code="form.send"/></button>
                 </form>
 
 
