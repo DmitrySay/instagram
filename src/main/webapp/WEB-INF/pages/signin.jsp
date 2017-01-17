@@ -3,7 +3,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
@@ -38,9 +37,7 @@
         <input type="password" id="inputPassword" name="j_password" class="form-control" placeholder="Password"
                required>
         <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
+            <label><input type="checkbox" name="remember_me">Remember me</label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         <h4 class="text-center"><a href="${contextPath}/registration">Create an account</a></h4>
@@ -52,4 +49,5 @@
 <tiles:insertAttribute name="footer"/>
 
 </body>
+
 </html>

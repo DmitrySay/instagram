@@ -3,8 +3,9 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html lang="en">
 <head>
@@ -39,19 +40,21 @@
                 </c:forEach>
 
 
-                <form method="post" action="fileUpLoad" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <h5 style="color: darkred">${message}</h5>
-                        <br>
-                        <label for="comment"><spring:message code="form.write"/></label>
-                        <textarea name="comment" id="comment" class="form-control" rows="10" cols="10"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="files"><spring:message code="form.attach"/></label>
-                        <input type="file" id="files" name="image">
-                    </div>
-                    <button type="submit" class="btn btn-danger pull-right"><spring:message code="form.send"/></button>
-                </form>
+                <sec:authorize ifAnyGranted="ROLE_USER">
+                    <form method="post" action="fileUpLoad" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <h5 style="color: darkred">${message}</h5>
+                            <br>
+                            <label for="comment"><spring:message code="form.write"/></label>
+                            <textarea name="comment" id="comment" class="form-control" rows="10" cols="10"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="files"><spring:message code="form.attach"/></label>
+                            <input type="file" id="files" name="image">
+                        </div>
+                        <button type="submit" class="btn btn-danger pull-right"><spring:message code="form.send"/></button>
+                    </form>
+                </sec:authorize>
 
 
                 <c:url var="firstUrl" value="/pages/1"/>
