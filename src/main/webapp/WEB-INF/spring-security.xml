@@ -8,16 +8,19 @@
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
     <!--Auth form setup-->
-    <http auto-config="true">
+    <http auto-config="true" >
         <intercept-url pattern="/pages/**" access="ROLE_USER"/>
 
         <form-login
                 login-page="/signin"
                 default-target-url="/index"
-                authentication-failure-url="/signin?error=e"
+                authentication-failure-url="/signin?login=e"
                 username-parameter="j_username"
                 password-parameter="j_password"
         />
+
+
+        <logout logout-success-url="/"/>
     </http>
 
 

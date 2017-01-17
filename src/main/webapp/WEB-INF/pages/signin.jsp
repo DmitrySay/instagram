@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,12 +28,15 @@
 
 <div class="container">
 
-    <form class="form-signin">
+    <form class="form-signin" method="post" action="j_spring_security_check">
         <h2 class="form-signin-heading">Please sign in</h2>
+        <h5 style="color: darkred">${error}</h5>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <input type="text" id="inputEmail" name="j_username" class="form-control" placeholder="Email address" required
+               autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="password" id="inputPassword" name="j_password" class="form-control" placeholder="Password"
+               required>
         <div class="checkbox">
             <label>
                 <input type="checkbox" value="remember-me"> Remember me

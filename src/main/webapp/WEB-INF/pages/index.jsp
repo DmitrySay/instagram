@@ -41,7 +41,7 @@
 
                 <form method="post" action="fileUpLoad" enctype="multipart/form-data">
                     <div class="form-group">
-                        ${message}
+                        <h5 style="color: darkred">${message}</h5>
                         <br>
                         <label for="comment"><spring:message code="form.write"/></label>
                         <textarea name="comment" id="comment" class="form-control" rows="10" cols="10"></textarea>

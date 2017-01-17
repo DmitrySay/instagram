@@ -5,6 +5,8 @@ import com.ranga.service.ImageService;
 import org.apache.commons.io.FileUtils;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +31,7 @@ public class WelcomeController {
     private ImageService imageService;
 
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String printIndex(ModelMap model) {
 
         //3 шаг выборки, по 3 новости из БД на страницу
@@ -47,6 +49,7 @@ public class WelcomeController {
         model.addAttribute("endIndex", end);
         model.addAttribute("currentIndex", current);
 
+
         return "index";
     }
 
@@ -59,9 +62,6 @@ public class WelcomeController {
         int current = pageNumber;
         int begin = Math.max(1, current - 2);
         int result = (int) Math.ceil(count / (double) 3);
-
-        System.out.println("count = " + count);
-        System.out.println("result = " + result);
         long end = Math.min(begin + 2, result);
 
         model.addAttribute("imageList", imageList);
@@ -70,14 +70,28 @@ public class WelcomeController {
         model.addAttribute("endIndex", end);
         model.addAttribute("currentIndex", current);
 
+        printUserDetails();
+
         return "index";
     }
 
 
     @RequestMapping(value = "/signin", method = RequestMethod.GET)
-    public String printSingin() {
+    public String printSingin(ModelMap model, @RequestParam(value = "login", required = false) String param) {
+
+        if ("e".equals(param)) {
+            model.addAttribute("error", "Incorrect username or password");
+        }
+
         return "signin";
     }
+
+    public void printUserDetails() {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        logger.info("username " + userDetails.getUsername());
+        logger.info("password " + userDetails.getPassword());
+    }
+
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String printRegistration() {
@@ -112,12 +126,10 @@ public class WelcomeController {
             imageT.setComment(comment);
             imageT.setFilename(filename);
 
-
-
             imageService.addImage(imageT);
 
-            //model.addAttribute("message", "Message :  image uploaded");// сообщение
             return "redirect:/";
+
 
         } else {
             model.addAttribute("message", "Заполните комментарий и выберите фото");
