@@ -4,6 +4,7 @@ import com.ranga.entities.Image;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -71,6 +72,7 @@ public class ImageDaoImpl implements ImageDao {
                 .createCriteria(Image.class)
                 .setFirstResult(offset != null ? offset : 0)
                 .setMaxResults(maxResults != null ? maxResults : 10)
+                .addOrder(Order.desc("id"))
                 .list();
     }
 
