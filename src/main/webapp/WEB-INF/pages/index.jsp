@@ -35,7 +35,10 @@
                         <img class="image"
                              src="<c:out value="${contextPath}"/>/images/<c:out value="${image.filename}"/>"/>
                         <p><c:out value="${image.comment}"/></p>
-                        <a href="delete/${image.id}"><spring:message code="form.delete"/></a>
+
+                        <sec:authorize ifAnyGranted="ROLE_ADMIN">
+                            <a href="delete/${image.id}"><spring:message code="form.delete"/></a>
+                        </sec:authorize>
                     </div>
                 </c:forEach>
 
@@ -52,7 +55,8 @@
                             <label for="files"><spring:message code="form.attach"/></label>
                             <input type="file" id="files" name="image">
                         </div>
-                        <button type="submit" class="btn btn-danger pull-right"><spring:message code="form.send"/></button>
+                        <button type="submit" class="btn btn-danger pull-right"><spring:message
+                                code="form.send"/></button>
                     </form>
                 </sec:authorize>
 
