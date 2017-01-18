@@ -70,7 +70,7 @@ public class WelcomeController {
         model.addAttribute("endIndex", end);
         model.addAttribute("currentIndex", current);
 
-        printUserDetails();
+        printUserDetails(); //test
 
         return "index";
     }

@@ -24,7 +24,6 @@ public class Main {
 
         Image image = new Image();
         image.setFilename("HI");
-
         imageService.addImage(image);
 
         List<Image> list = imageService.getAllImage();
