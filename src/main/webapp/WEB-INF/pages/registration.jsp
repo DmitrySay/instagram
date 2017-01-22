@@ -30,18 +30,24 @@
 
     <form:form method="POST" modelAttribute="userForm" class="form-signin">
 
+        <h2 class="form-signin-heading">Please register</h2>
+        <label for="username">Username</label>
         <form:errors path="username"></form:errors>
         <form:input type="text" path="username" class="form-control" placeholder="Username"
                     autofocus="true"></form:input>
 
+        <label for="username">Password</label>
         <form:errors path="password"></form:errors>
         <form:input type="password" path="password" class="form-control" placeholder="Password"></form:input>
 
+        <label for="username">Confirm password</label>
         <form:errors path="confirmPassword"></form:errors>
         <form:input type="password" path="confirmPassword" class="form-control"
                     placeholder="Confirm your password"></form:input>
 
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+
 
     </form:form>
 
@@ -52,5 +58,6 @@
 <tiles:insertAttribute name="footer"/>
 
 </body>
+
 </html>
 
