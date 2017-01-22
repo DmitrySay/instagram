@@ -7,5 +7,5 @@ public interface UserDao {
 
     User findByUsername(String username);
 
-    User save(User user);
+    void save(User user);
 }

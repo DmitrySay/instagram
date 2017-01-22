@@ -1,21 +1,24 @@
 package com.ranga.controller;
 
 import com.ranga.entities.Image;
+import com.ranga.entities.User;
 import com.ranga.service.ImageService;
+import com.ranga.service.UserService;
+import com.ranga.service.UserValidator;
 import org.apache.commons.io.FileUtils;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.crypto.dsig.XMLSignature;
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
@@ -29,6 +32,12 @@ public class WelcomeController {
 
     @Autowired
     private ImageService imageService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private UserValidator userValidator;
 
 
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
@@ -70,8 +79,6 @@ public class WelcomeController {
         model.addAttribute("endIndex", end);
         model.addAttribute("currentIndex", current);
 
-        printUserDetails(); //test
-
         return "index";
     }
 
@@ -94,8 +101,29 @@ public class WelcomeController {
 
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String printRegistration() {
+    public String printRegistration(Model model) {
+        User user = new User();
+        model.addAttribute("userForm", user);
+
         return "registration";
+    }
+
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+
+
+
+        userValidator.validate(userForm, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "registration";
+        }
+
+        userService.save(userForm);
+
+        //  securityService.autoLogin(userForm.getUsername(), userForm.getConfirmPassword());
+
+        return "redirect:/index";
     }
 
 

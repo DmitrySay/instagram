@@ -1,14 +1,14 @@
 package com.ranga;
 
-import com.ranga.entities.Image;
-import com.ranga.service.ImageService;
+import com.ranga.dao.RoleDao;
+import com.ranga.dao.UserDao;
+import com.ranga.entities.Role;
+import com.ranga.entities.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.List;
-
-
-
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class Main {
@@ -33,8 +33,9 @@ public class Main {
         //System.out.println(imageService.);
         ((ClassPathXmlApplicationContext) context).close();
 */
+
+
+
+
     }
-
-
-
 }

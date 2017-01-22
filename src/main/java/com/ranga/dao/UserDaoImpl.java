@@ -49,7 +49,7 @@ public class UserDaoImpl implements UserDao {
 
 
     @Override
-    public User save(User user) {
-        return (User) getSession().save(user);
+    public void save(User user) {
+        getSession().save(user);
     }
 }

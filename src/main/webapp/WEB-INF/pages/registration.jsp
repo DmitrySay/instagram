@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,17 +27,24 @@
 
 <div class="container">
 
-    <form class="form-signin">
-        <h2 class="form-signin-heading">Create your account</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <label for="inputPassword" class="sr-only">Confirm password</label>
-        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm your password" required>
+
+    <form:form method="POST" modelAttribute="userForm" class="form-signin">
+
+        <form:errors path="username"></form:errors>
+        <form:input type="text" path="username" class="form-control" placeholder="Username"
+                    autofocus="true"></form:input>
+
+        <form:errors path="password"></form:errors>
+        <form:input type="password" path="password" class="form-control" placeholder="Password"></form:input>
+
+        <form:errors path="confirmPassword"></form:errors>
+        <form:input type="password" path="confirmPassword" class="form-control"
+                    placeholder="Confirm your password"></form:input>
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 
-    </form>
+    </form:form>
+
 
 </div> <!-- /container -->
 
