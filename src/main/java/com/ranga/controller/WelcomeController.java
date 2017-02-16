@@ -2,6 +2,7 @@ package com.ranga.controller;
 
 import com.ranga.entities.Image;
 import com.ranga.entities.User;
+import com.ranga.service.ISecurityService;
 import com.ranga.service.ImageService;
 import com.ranga.service.UserService;
 import com.ranga.service.UserValidator;
@@ -38,6 +39,9 @@ public class WelcomeController {
 
     @Autowired
     private UserValidator userValidator;
+
+    @Autowired
+    private ISecurityService securityService;
 
 
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
@@ -121,7 +125,7 @@ public class WelcomeController {
 
         userService.save(userForm);
 
-        //  securityService.autoLogin(userForm.getUsername(), userForm.getConfirmPassword());
+        securityService.autoLogin(userForm.getUsername(), userForm.getConfirmPassword());
 
         return "redirect:/index";
     }
